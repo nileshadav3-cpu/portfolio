@@ -15,6 +15,9 @@
     --secondary:#2563EB;
 
     --bg:#07111f;
+    --bg2:#0b1628;
+    --bg3:#040b16;
+
     --card:#111827;
     --card2:#1f2937;
 
@@ -25,14 +28,45 @@
 
     --shadow:0 10px 30px rgba(0,0,0,.35);
 
+    --transition:.35s ease;
+
 }
+
+/* ===================================================
+   BODY
+=================================================== */
 
 body{
 
     font-family:'Poppins',sans-serif;
+
     background:linear-gradient(135deg,#07111f,#0f172a,#111827);
+
     color:var(--text);
+
     overflow-x:hidden;
+
+    transition:background .4s,color .4s;
+
+}
+
+img{
+
+    max-width:100%;
+
+    display:block;
+
+}
+
+a{
+
+    text-decoration:none;
+
+}
+
+ul{
+
+    list-style:none;
 
 }
 
@@ -43,7 +77,9 @@ body{
 .container{
 
     width:90%;
+
     max-width:1200px;
+
     margin:auto;
 
 }
@@ -57,6 +93,7 @@ section{
 .section-heading{
 
     text-align:center;
+
     margin-bottom:60px;
 
 }
@@ -64,26 +101,33 @@ section{
 .section-heading span{
 
     color:var(--primary);
+
     letter-spacing:2px;
+
     font-size:14px;
-    text-transform:uppercase;
+
     font-weight:600;
+
+    text-transform:uppercase;
 
 }
 
 .section-heading h2{
 
     font-size:42px;
-    margin-top:10px;
-    margin-bottom:20px;
+
+    margin:12px 0 20px;
 
 }
 
 .section-heading p{
 
     color:var(--text2);
-    max-width:750px;
+
+    max-width:760px;
+
     margin:auto;
+
     line-height:1.8;
 
 }
@@ -95,12 +139,17 @@ section{
 header{
 
     position:fixed;
+
     top:0;
+
     left:0;
+
     width:100%;
 
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
 
     padding:22px 8%;
@@ -109,14 +158,19 @@ header{
 
     backdrop-filter:blur(15px);
 
-    z-index:999;
+    z-index:1000;
+
+    transition:var(--transition);
 
 }
 
 .logo{
 
     font-size:30px;
+
     font-weight:700;
+
+    color:var(--text);
 
 }
 
@@ -126,19 +180,29 @@ header{
 
 }
 
+/* ===================================================
+   NAVIGATION
+=================================================== */
+
 nav{
 
     display:flex;
+
+    align-items:center;
+
     gap:30px;
 
 }
 
 nav a{
 
-    color:white;
-    text-decoration:none;
-    transition:.3s;
+    color:var(--text);
+
     font-weight:500;
+
+    transition:var(--transition);
+
+    position:relative;
 
 }
 
@@ -148,10 +212,51 @@ nav a:hover{
 
 }
 
+nav a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-6px;
+
+    width:0;
+
+    height:2px;
+
+    background:var(--primary);
+
+    transition:var(--transition);
+
+}
+
+nav a:hover::after,
+
+nav a.active::after{
+
+    width:100%;
+
+}
+
+nav a.active{
+
+    color:var(--primary);
+
+    font-weight:600;
+
+}
+
+/* ===================================================
+   THEME BUTTON
+=================================================== */
+
 .theme-btn{
 
-    width:46px;
-    height:46px;
+    width:48px;
+
+    height:48px;
 
     border:none;
 
@@ -159,13 +264,13 @@ nav a:hover{
 
     background:var(--card2);
 
-    color:white;
+    color:#fff;
 
     cursor:pointer;
 
-    transition:.3s;
+    font-size:20px;
 
-    font-size:18px;
+    transition:var(--transition);
 
 }
 
@@ -173,10 +278,11 @@ nav a:hover{
 
     background:var(--primary);
 
-}
+    transform:rotate(20deg);
 
+}
 /* ===================================================
-   HERO
+   HERO SECTION
 =================================================== */
 
 .hero{
@@ -189,9 +295,9 @@ nav a:hover{
 
     align-items:center;
 
-    padding:150px 8% 80px;
-
     gap:70px;
+
+    padding:150px 8% 80px;
 
 }
 
@@ -209,17 +315,21 @@ nav a:hover{
 
     justify-content:center;
 
+    align-items:center;
+
 }
 
 .welcome{
+
+    display:inline-block;
 
     color:var(--primary);
 
     font-weight:600;
 
-    display:inline-block;
-
     margin-bottom:18px;
+
+    letter-spacing:1px;
 
 }
 
@@ -239,9 +349,9 @@ nav a:hover{
 
     font-size:30px;
 
-    margin-bottom:25px;
-
     min-height:42px;
+
+    margin-bottom:25px;
 
 }
 
@@ -256,32 +366,36 @@ nav a:hover{
 }
 
 /* ===================================================
-   BUTTONS
+   HERO BUTTONS
 =================================================== */
 
 .hero-buttons{
-
-    margin-top:40px;
 
     display:flex;
 
     gap:20px;
 
+    margin-top:40px;
+
+    flex-wrap:wrap;
+
 }
 
 .btn-primary{
 
-    background:var(--primary);
+    display:inline-block;
 
-    color:white;
-
-    padding:15px 30px;
+    padding:15px 32px;
 
     border-radius:12px;
 
-    text-decoration:none;
+    background:var(--primary);
 
-    transition:.3s;
+    color:#fff;
+
+    font-weight:600;
+
+    transition:var(--transition);
 
 }
 
@@ -291,21 +405,25 @@ nav a:hover{
 
     box-shadow:var(--shadow);
 
+    background:var(--secondary);
+
 }
 
 .btn-secondary{
 
-    border:2px solid var(--primary);
+    display:inline-block;
 
-    color:white;
-
-    padding:15px 30px;
+    padding:15px 32px;
 
     border-radius:12px;
 
-    text-decoration:none;
+    border:2px solid var(--primary);
 
-    transition:.3s;
+    color:#fff;
+
+    font-weight:600;
+
+    transition:var(--transition);
 
 }
 
@@ -313,10 +431,12 @@ nav a:hover{
 
     background:var(--primary);
 
+    transform:translateY(-5px);
+
 }
 
 /* ===================================================
-   HERO IMAGE
+   PROFILE IMAGE
 =================================================== */
 
 .profile-card{
@@ -327,19 +447,21 @@ nav a:hover{
 
     border-radius:50%;
 
-    background:var(--card);
-
-    border:4px solid var(--primary);
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
     overflow:hidden;
 
+    border:5px solid var(--primary);
+
+    background:var(--card);
+
     box-shadow:var(--shadow);
+
+    transition:var(--transition);
+
+}
+
+.profile-card:hover{
+
+    transform:scale(1.03);
 
 }
 
@@ -373,17 +495,17 @@ nav a:hover{
 
     background:rgba(255,255,255,.05);
 
-    backdrop-filter:blur(10px);
-
     border:1px solid rgba(255,255,255,.08);
 
-    padding:25px;
+    backdrop-filter:blur(10px);
 
     border-radius:16px;
 
+    padding:25px;
+
     text-align:center;
 
-    transition:.3s;
+    transition:var(--transition);
 
 }
 
@@ -392,6 +514,8 @@ nav a:hover{
     transform:translateY(-10px);
 
     border-color:var(--primary);
+
+    box-shadow:var(--shadow);
 
 }
 
@@ -409,14 +533,38 @@ nav a:hover{
 
     color:var(--text2);
 
-  }
+    font-size:15px;
+
+}
+
+/* ===================================================
+   SCROLL ANIMATION
+=================================================== */
+
+.hidden{
+
+    opacity:0;
+
+    transform:translateY(60px);
+
+    transition:all .8s ease;
+
+}
+
+.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+   }
 /* ===================================================
    ABOUT SECTION
 =================================================== */
 
 .about{
 
-    background:#0b1628;
+    background:var(--bg2);
 
 }
 
@@ -486,7 +634,7 @@ nav a:hover{
 
     border-radius:16px;
 
-    transition:.3s;
+    transition:var(--transition);
 
 }
 
@@ -495,6 +643,8 @@ nav a:hover{
     transform:translateY(-8px);
 
     border-color:var(--primary);
+
+    box-shadow:var(--shadow);
 
 }
 
@@ -506,13 +656,19 @@ nav a:hover{
 
 }
 
+.info-card p{
+
+    color:var(--text2);
+
+}
+
 /* ===================================================
    EXPERTISE
 =================================================== */
 
 .expertise{
 
-    background:#07111f;
+    background:var(--bg);
 
 }
 
@@ -530,15 +686,15 @@ nav a:hover{
 
     background:rgba(255,255,255,.05);
 
-    border-radius:18px;
-
-    padding:35px;
-
     border:1px solid rgba(255,255,255,.08);
+
+    border-radius:18px;
 
     backdrop-filter:blur(10px);
 
-    transition:.35s;
+    padding:35px;
+
+    transition:var(--transition);
 
 }
 
@@ -574,7 +730,7 @@ nav a:hover{
 
 .modules{
 
-    background:#0b1628;
+    background:var(--bg2);
 
 }
 
@@ -584,7 +740,7 @@ nav a:hover{
 
     grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 
-    gap:28px;
+    gap:30px;
 
 }
 
@@ -592,15 +748,15 @@ nav a:hover{
 
     background:rgba(255,255,255,.05);
 
-    padding:35px;
+    border:1px solid rgba(255,255,255,.08);
 
     border-radius:20px;
 
-    border:1px solid rgba(255,255,255,.08);
-
-    transition:.35s;
+    padding:35px;
 
     text-align:center;
+
+    transition:var(--transition);
 
 }
 
@@ -624,9 +780,9 @@ nav a:hover{
 
 .module-card h3{
 
-    margin-bottom:18px;
-
     color:var(--primary);
+
+    margin-bottom:15px;
 
 }
 
@@ -636,14 +792,14 @@ nav a:hover{
 
     line-height:1.8;
 
-}
+       }
 /* ===================================================
    EXPERIENCE
 =================================================== */
 
 .experience{
 
-    background:#07111f;
+    background:var(--bg);
 
 }
 
@@ -663,7 +819,7 @@ nav a:hover{
 
     position:absolute;
 
-    left:60px;
+    left:58px;
 
     top:0;
 
@@ -691,11 +847,13 @@ nav a:hover{
 
     width:120px;
 
-    height:60px;
-
-    border-radius:12px;
+    min-height:60px;
 
     background:var(--primary);
+
+    color:#fff;
+
+    border-radius:12px;
 
     display:flex;
 
@@ -703,11 +861,11 @@ nav a:hover{
 
     align-items:center;
 
-    color:#fff;
-
     font-weight:700;
 
     z-index:2;
+
+    text-align:center;
 
 }
 
@@ -717,15 +875,15 @@ nav a:hover{
 
     background:rgba(255,255,255,.05);
 
-    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.08);
 
-    padding:30px;
+    backdrop-filter:blur(10px);
 
     border-radius:18px;
 
-    border:1px solid rgba(255,255,255,.08);
+    padding:30px;
 
-    transition:.3s;
+    transition:var(--transition);
 
 }
 
@@ -751,13 +909,15 @@ nav a:hover{
 
     color:var(--text2);
 
-    margin-bottom:18px;
-
     font-weight:500;
+
+    margin-bottom:20px;
 
 }
 
 .timeline-content ul{
+
+    list-style:disc;
 
     padding-left:20px;
 
@@ -765,21 +925,21 @@ nav a:hover{
 
 .timeline-content li{
 
-    margin-bottom:12px;
-
     color:var(--text2);
 
     line-height:1.8;
 
+    margin-bottom:10px;
+
 }
 
 /* ===================================================
-   RESPONSIBILITIES
+   KEY RESPONSIBILITIES
 =================================================== */
 
 .projects{
 
-    background:#0b1628;
+    background:var(--bg2);
 
 }
 
@@ -797,13 +957,13 @@ nav a:hover{
 
     background:rgba(255,255,255,.05);
 
+    border:1px solid rgba(255,255,255,.08);
+
     border-radius:18px;
 
     padding:35px;
 
-    border:1px solid rgba(255,255,255,.08);
-
-    transition:.3s;
+    transition:var(--transition);
 
 }
 
@@ -834,12 +994,12 @@ nav a:hover{
 }
 
 /* ===================================================
-   SKILLS
+   TECHNICAL SKILLS
 =================================================== */
 
 .skills{
 
-    background:#07111f;
+    background:var(--bg);
 
 }
 
@@ -863,7 +1023,7 @@ nav a:hover{
 
     padding:28px;
 
-    transition:.3s;
+    transition:var(--transition);
 
 }
 
@@ -891,14 +1051,14 @@ nav a:hover{
 
     line-height:1.8;
 
-}
+   }
 /* ===================================================
    WHY HIRE ME
 =================================================== */
 
 .why-me{
 
-    background:#0b1628;
+    background:var(--bg2);
 
 }
 
@@ -920,11 +1080,11 @@ nav a:hover{
 
     border-radius:18px;
 
+    backdrop-filter:blur(10px);
+
     padding:35px;
 
-    transition:.3s;
-
-    backdrop-filter:blur(10px);
+    transition:var(--transition);
 
 }
 
@@ -960,7 +1120,7 @@ nav a:hover{
 
 .workflow{
 
-    background:#07111f;
+    background:var(--bg);
 
 }
 
@@ -984,7 +1144,7 @@ nav a:hover{
 
     text-align:center;
 
-    transition:.3s;
+    transition:var(--transition);
 
 }
 
@@ -1004,9 +1164,7 @@ nav a:hover{
 
     height:60px;
 
-    margin:auto;
-
-    margin-bottom:20px;
+    margin:0 auto 20px;
 
     border-radius:50%;
 
@@ -1018,9 +1176,11 @@ nav a:hover{
 
     align-items:center;
 
-    color:white;
+    color:#fff;
 
     font-weight:700;
+
+    font-size:18px;
 
 }
 
@@ -1058,7 +1218,7 @@ nav a:hover{
 
 .contact{
 
-    background:#0b1628;
+    background:var(--bg2);
 
 }
 
@@ -1077,6 +1237,8 @@ nav a:hover{
     border-radius:20px;
 
     padding:50px;
+
+    backdrop-filter:blur(10px);
 
 }
 
@@ -1104,25 +1266,25 @@ nav a:hover{
 
     gap:20px;
 
-    margin-top:40px;
-
     flex-wrap:wrap;
+
+    margin-top:40px;
 
 }
 
 .contact-btn{
 
+    display:inline-block;
+
     background:var(--primary);
 
-    color:white;
-
-    text-decoration:none;
+    color:#fff;
 
     padding:15px 28px;
 
     border-radius:12px;
 
-    transition:.3s;
+    transition:var(--transition);
 
 }
 
@@ -1132,6 +1294,8 @@ nav a:hover{
 
     box-shadow:var(--shadow);
 
+    background:var(--secondary);
+
 }
 
 /* ===================================================
@@ -1140,7 +1304,7 @@ nav a:hover{
 
 footer{
 
-    background:#040b16;
+    background:var(--bg3);
 
     text-align:center;
 
@@ -1167,7 +1331,7 @@ footer p{
 }
 
 /* ===================================================
-   SCROLL BUTTON
+   SCROLL TO TOP
 =================================================== */
 
 #scrollTop{
@@ -1188,7 +1352,7 @@ footer p{
 
     background:var(--primary);
 
-    color:white;
+    color:#fff;
 
     font-size:22px;
 
@@ -1198,7 +1362,7 @@ footer p{
 
     z-index:999;
 
-    transition:.3s;
+    transition:var(--transition);
 
 }
 
@@ -1206,17 +1370,18 @@ footer p{
 
     transform:translateY(-6px);
 
-}
+    background:var(--secondary);
 
+}
 /* ===================================================
-   RESPONSIVE
+   RESPONSIVE DESIGN
 =================================================== */
 
-@media(max-width:992px){
+@media (max-width:992px){
 
     header{
 
-        padding:20px;
+        padding:18px 5%;
 
     }
 
@@ -1232,11 +1397,31 @@ footer p{
 
         text-align:center;
 
+        padding-top:140px;
+
     }
 
     .hero h1{
 
         font-size:48px;
+
+    }
+
+    .hero h2{
+
+        font-size:26px;
+
+    }
+
+    .hero p{
+
+        margin:auto;
+
+    }
+
+    .hero-buttons{
+
+        justify-content:center;
 
     }
 
@@ -1280,7 +1465,31 @@ footer p{
 
 }
 
-@media(max-width:600px){
+@media (max-width:768px){
+
+    section{
+
+        padding:80px 0;
+
+    }
+
+    .section-heading h2{
+
+        font-size:34px;
+
+    }
+
+    .profile-card{
+
+        width:320px;
+
+        height:320px;
+
+    }
+
+}
+
+@media (max-width:600px){
 
     .hero h1{
 
@@ -1288,15 +1497,29 @@ footer p{
 
     }
 
-    .section-heading h2{
+    .hero h2{
 
-        font-size:32px;
+        font-size:22px;
 
     }
 
     .hero-buttons{
 
         flex-direction:column;
+
+        align-items:center;
+
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .contact-btn{
+
+        width:100%;
+
+        max-width:280px;
+
+        text-align:center;
 
     }
 
@@ -1308,72 +1531,201 @@ footer p{
 
     .profile-card{
 
-        width:280px;
+        width:260px;
 
-        height:280px;
+        height:260px;
 
     }
 
-              }
-/* Theme */
+    .contact-links{
 
-.light-mode{
+        flex-direction:column;
 
-background:#f7fafc;
-color:#111827;
+        align-items:center;
 
-}
-
-.light-mode header{
-
-background:rgba(255,255,255,.9);
+    }
 
 }
 
-.light-mode section{
+/* ===================================================
+   LIGHT MODE
+=================================================== */
 
-background:#f7fafc !important;
+body.light-mode{
 
-}
+    background:#f5f7fb;
 
-.light-mode .stat-card,
-.light-mode .about-card,
-.light-mode .expertise-card,
-.light-mode .module-card,
-.light-mode .timeline-content,
-.light-mode .project-card,
-.light-mode .skill-card,
-.light-mode .why-card,
-.light-mode .workflow-step,
-.light-mode .contact-card{
-
-background:white;
-color:#111827;
+    color:#111827;
 
 }
 
-/* Scroll Animation */
+body.light-mode header{
+
+    background:rgba(255,255,255,.95);
+
+}
+
+body.light-mode .logo,
+
+body.light-mode nav a{
+
+    color:#111827;
+
+}
+
+body.light-mode nav a:hover,
+
+body.light-mode nav a.active{
+
+    color:var(--primary);
+
+}
+
+body.light-mode .about,
+body.light-mode .modules,
+body.light-mode .projects,
+body.light-mode .why-me,
+body.light-mode .contact{
+
+    background:#eef3f8;
+
+}
+
+body.light-mode .expertise,
+body.light-mode .experience,
+body.light-mode .skills,
+body.light-mode .workflow{
+
+    background:#f7fafc;
+
+}
+
+body.light-mode .stat-card,
+body.light-mode .info-card,
+body.light-mode .expertise-card,
+body.light-mode .module-card,
+body.light-mode .timeline-content,
+body.light-mode .project-card,
+body.light-mode .skill-card,
+body.light-mode .why-card,
+body.light-mode .workflow-step,
+body.light-mode .contact-card{
+
+    background:#ffffff;
+
+    color:#111827;
+
+    border:1px solid #dbe3ee;
+
+}
+
+body.light-mode p,
+body.light-mode span,
+body.light-mode li,
+body.light-mode h4{
+
+    color:#4b5563;
+
+}
+
+body.light-mode footer{
+
+    background:#e5e7eb;
+
+}
+
+body.light-mode footer p{
+
+    color:#4b5563;
+
+}
+
+body.light-mode .theme-btn{
+
+    background:#e2e8f0;
+
+    color:#111827;
+
+}
+
+/* ===================================================
+   SCROLL REVEAL
+=================================================== */
 
 .hidden{
 
-opacity:0;
-transform:translateY(60px);
-transition:all .8s ease;
+    opacity:0;
+
+    transform:translateY(60px);
+
+    transition:all .8s ease;
 
 }
 
 .show{
 
-opacity:1;
-transform:translateY(0);
+    opacity:1;
+
+    transform:translateY(0);
 
 }
 
-/* Active Navbar */
+/* ===================================================
+   ACTIVE NAVIGATION
+=================================================== */
 
 nav a.active{
 
-color:var(--primary);
-font-weight:700;
+    color:var(--primary);
+
+    font-weight:600;
 
 }
+
+nav a.active::after{
+
+    width:100%;
+
+}
+
+/* ===================================================
+   SELECTION
+=================================================== */
+
+::selection{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+/* ===================================================
+   SCROLLBAR
+=================================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#0b1628;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--primary);
+
+    border-radius:10px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:var(--secondary);
+
+   }
