@@ -17,6 +17,8 @@ const typing = document.getElementById("typing");
 
 function typeEffect() {
 
+    if (!typing) return;
+
     const current = words[wordIndex];
 
     if (!deleting) {
@@ -55,28 +57,32 @@ typeEffect();
 
 const themeBtn = document.getElementById("themeToggle");
 
-themeBtn.addEventListener("click", () => {
+if (themeBtn) {
 
-    document.body.classList.toggle("light-mode");
+    themeBtn.addEventListener("click", () => {
 
-    if (document.body.classList.contains("light-mode")) {
+        document.body.classList.toggle("light-mode");
 
+        if (document.body.classList.contains("light-mode")) {
+
+            themeBtn.innerHTML = "☀️";
+            localStorage.setItem("theme", "light");
+
+        } else {
+
+            themeBtn.innerHTML = "🌙";
+            localStorage.setItem("theme", "dark");
+
+        }
+
+    });
+
+    if (localStorage.getItem("theme") === "light") {
+
+        document.body.classList.add("light-mode");
         themeBtn.innerHTML = "☀️";
-        localStorage.setItem("theme", "light");
-
-    } else {
-
-        themeBtn.innerHTML = "🌙";
-        localStorage.setItem("theme", "dark");
 
     }
-
-});
-
-if (localStorage.getItem("theme") === "light") {
-
-    document.body.classList.add("light-mode");
-    themeBtn.innerHTML = "☀️";
 
 }
 
@@ -125,47 +131,65 @@ document.querySelectorAll(".primary,.secondary").forEach(button => {
 
 const image = document.querySelector(".image-card");
 
-image.addEventListener("mousemove", (e) => {
+if (image) {
 
-    const x = e.offsetX;
-    const y = e.offsetY;
+    image.addEventListener("mousemove", (e) => {
 
-    const rotateY = (x - 200) / 20;
-    const rotateX = (200 - y) / 20;
+        const x = e.offsetX;
+        const y = e.offsetY;
 
-    image.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        const rotateY = (x - 200) / 20;
+        const rotateX = (200 - y) / 20;
 
-});
+        image.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 
-image.addEventListener("mouseleave", () => {
+    });
 
-    image.style.transform = "perspective(1000px) rotateX(0) rotateY(0)";
+    image.addEventListener("mouseleave", () => {
 
-});
+        image.style.transform = "perspective(1000px) rotateX(0) rotateY(0)";
+
+    });
+
+}
 
 /* ==========================================
    SMOOTH PAGE TRANSITION
 ========================================== */
 
-document.querySelector(".primary").addEventListener("click", function (e) {
+const primaryBtn = document.querySelector(".primary");
 
-    e.preventDefault();
+if (primaryBtn) {
 
-    document.body.style.opacity = "0";
+    primaryBtn.addEventListener("click", function (e) {
 
-    setTimeout(() => {
+        e.preventDefault();
 
-        window.location = this.href;
+        document.body.style.opacity = "0";
 
-    }, 500);
+        setTimeout(() => {
 
-});
+            window.location.href = this.href;
 
-window.onload = () => {
+        }, 500);
+
+    });
+
+}
+
+// Show page when loaded
+window.addEventListener("load", () => {
 
     document.body.style.opacity = "1";
 
-};
+});
+
+// Show page when returning using browser Back button
+window.addEventListener("pageshow", () => {
+
+    document.body.style.opacity = "1";
+
+});
 
 /* ==========================================
    SHOW DOWNLOAD HELP AFTER CLICK
