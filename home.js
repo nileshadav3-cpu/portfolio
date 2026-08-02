@@ -20,10 +20,8 @@ function typeEffect() {
     const current = words[wordIndex];
 
     if (!deleting) {
-
         typing.textContent = current.substring(0, charIndex++);
     } else {
-
         typing.textContent = current.substring(0, charIndex--);
     }
 
@@ -40,9 +38,7 @@ function typeEffect() {
         wordIndex++;
 
         if (wordIndex === words.length) {
-
             wordIndex = 0;
-
         }
 
     }
@@ -63,24 +59,24 @@ themeBtn.addEventListener("click", () => {
 
     document.body.classList.toggle("light-mode");
 
-    if(document.body.classList.contains("light-mode")){
+    if (document.body.classList.contains("light-mode")) {
 
-        themeBtn.innerHTML="☀️";
-        localStorage.setItem("theme","light");
+        themeBtn.innerHTML = "☀️";
+        localStorage.setItem("theme", "light");
 
-    }else{
+    } else {
 
-        themeBtn.innerHTML="🌙";
-        localStorage.setItem("theme","dark");
+        themeBtn.innerHTML = "🌙";
+        localStorage.setItem("theme", "dark");
 
     }
 
 });
 
-if(localStorage.getItem("theme")==="light"){
+if (localStorage.getItem("theme") === "light") {
 
     document.body.classList.add("light-mode");
-    themeBtn.innerHTML="☀️";
+    themeBtn.innerHTML = "☀️";
 
 }
 
@@ -88,21 +84,19 @@ if(localStorage.getItem("theme")==="light"){
    FADE IN ANIMATION
 ========================================== */
 
-const observer = new IntersectionObserver((entries)=>{
+const observer = new IntersectionObserver((entries) => {
 
-    entries.forEach(entry=>{
+    entries.forEach(entry => {
 
-        if(entry.isIntersecting){
-
+        if (entry.isIntersecting) {
             entry.target.classList.add("show");
-
         }
 
     });
 
-},{threshold:0.2});
+}, { threshold: 0.2 });
 
-document.querySelectorAll(".hero,.quick,footer").forEach(section=>{
+document.querySelectorAll(".hero,.quick,footer").forEach(section => {
 
     section.classList.add("hidden");
     observer.observe(section);
@@ -113,19 +107,15 @@ document.querySelectorAll(".hero,.quick,footer").forEach(section=>{
    BUTTON RIPPLE EFFECT
 ========================================== */
 
-document.querySelectorAll(".primary,.secondary").forEach(button=>{
+document.querySelectorAll(".primary,.secondary").forEach(button => {
 
-button.addEventListener("mouseenter",()=>{
+    button.addEventListener("mouseenter", () => {
+        button.style.transform = "translateY(-6px) scale(1.03)";
+    });
 
-button.style.transform="translateY(-6px) scale(1.03)";
-
-});
-
-button.addEventListener("mouseleave",()=>{
-
-button.style.transform="translateY(0) scale(1)";
-
-});
+    button.addEventListener("mouseleave", () => {
+        button.style.transform = "translateY(0) scale(1)";
+    });
 
 });
 
@@ -133,23 +123,23 @@ button.style.transform="translateY(0) scale(1)";
    IMAGE TILT EFFECT
 ========================================== */
 
-const image=document.querySelector(".image-card");
+const image = document.querySelector(".image-card");
 
-image.addEventListener("mousemove",(e)=>{
+image.addEventListener("mousemove", (e) => {
 
-const x=e.offsetX;
-const y=e.offsetY;
+    const x = e.offsetX;
+    const y = e.offsetY;
 
-const rotateY=(x-200)/20;
-const rotateX=(200-y)/20;
+    const rotateY = (x - 200) / 20;
+    const rotateX = (200 - y) / 20;
 
-image.style.transform=`perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    image.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 
 });
 
-image.addEventListener("mouseleave",()=>{
+image.addEventListener("mouseleave", () => {
 
-image.style.transform="perspective(1000px) rotateX(0) rotateY(0)";
+    image.style.transform = "perspective(1000px) rotateX(0) rotateY(0)";
 
 });
 
@@ -157,22 +147,39 @@ image.style.transform="perspective(1000px) rotateX(0) rotateY(0)";
    SMOOTH PAGE TRANSITION
 ========================================== */
 
-document.querySelector(".primary").addEventListener("click",function(e){
+document.querySelector(".primary").addEventListener("click", function (e) {
 
-e.preventDefault();
+    e.preventDefault();
 
-document.body.style.opacity="0";
+    document.body.style.opacity = "0";
 
-setTimeout(()=>{
+    setTimeout(() => {
 
-window.location=this.href;
+        window.location = this.href;
 
-},500);
+    }, 500);
 
 });
 
-window.onload=()=>{
+window.onload = () => {
 
-document.body.style.opacity="1";
+    document.body.style.opacity = "1";
 
 };
+
+/* ==========================================
+   SHOW DOWNLOAD HELP AFTER CLICK
+========================================== */
+
+const downloadBtn = document.getElementById("downloadResume");
+const downloadNote = document.getElementById("downloadNote");
+
+if (downloadBtn && downloadNote) {
+
+    downloadBtn.addEventListener("click", () => {
+
+        downloadNote.classList.add("show");
+
+    });
+
+}
