@@ -1315,3 +1315,65 @@ footer p{
     }
 
               }
+/* Theme */
+
+.light-mode{
+
+background:#f7fafc;
+color:#111827;
+
+}
+
+.light-mode header{
+
+background:rgba(255,255,255,.9);
+
+}
+
+.light-mode section{
+
+background:#f7fafc !important;
+
+}
+
+.light-mode .stat-card,
+.light-mode .about-card,
+.light-mode .expertise-card,
+.light-mode .module-card,
+.light-mode .timeline-content,
+.light-mode .project-card,
+.light-mode .skill-card,
+.light-mode .why-card,
+.light-mode .workflow-step,
+.light-mode .contact-card{
+
+background:white;
+color:#111827;
+
+}
+
+/* Scroll Animation */
+
+.hidden{
+
+opacity:0;
+transform:translateY(60px);
+transition:all .8s ease;
+
+}
+
+.show{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+/* Active Navbar */
+
+nav a.active{
+
+color:var(--primary);
+font-weight:700;
+
+}
