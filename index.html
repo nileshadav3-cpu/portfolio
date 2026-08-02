@@ -69,7 +69,7 @@ ETQ Reliance Consultant with 4+ years of experience delivering enterprise Qualit
 
 </a>
 
-<a href="assets/Nilesh_Adav_Resume.pdf" class="secondary">
+<a href="assets/Nilesh_Adav_Resume.pdf" class="secondary" id="downloadResume">
 
 📄 Download Resume
 
@@ -77,10 +77,8 @@ ETQ Reliance Consultant with 4+ years of experience delivering enterprise Qualit
 
 </div>
 
-<p class="download-note">
-If the resume doesn't download, please <strong>right-click</strong> the
-<strong>Download Resume</strong> button and select
-<strong>"Open link in Incognito window"</strong>.
+<p id="downloadNote" class="download-note">
+If the resume doesn't download, please <strong>right-click</strong> the <strong>Download Resume</strong> button and select <strong>"Open link in Incognito window"</strong>.
 </p>
 
 <div class="social">
@@ -192,6 +190,15 @@ Production & Hypercare
 </footer>
 
 <script src="home.js"></script>
+
+<script>
+const downloadBtn = document.getElementById("downloadResume");
+const downloadNote = document.getElementById("downloadNote");
+
+downloadBtn.addEventListener("click", () => {
+    downloadNote.classList.add("show");
+});
+</script>
 
 </body>
 
