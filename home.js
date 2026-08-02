@@ -184,10 +184,27 @@ window.addEventListener("load", () => {
 
 });
 
-// Show page when returning using browser Back button
-window.addEventListener("pageshow", () => {
+// Force one reload when returning with browser Back button
+window.addEventListener("pageshow", function (event) {
 
     document.body.style.opacity = "1";
+
+    const nav = performance.getEntriesByType("navigation")[0];
+
+    if (event.persisted || (nav && nav.type === "back_forward")) {
+
+        if (!sessionStorage.getItem("backReloadDone")) {
+
+            sessionStorage.setItem("backReloadDone", "true");
+            location.reload();
+
+        } else {
+
+            sessionStorage.removeItem("backReloadDone");
+
+        }
+
+    }
 
 });
 
