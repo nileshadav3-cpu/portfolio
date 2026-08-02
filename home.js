@@ -6,8 +6,7 @@ const words = [
     "ETQ Reliance Consultant",
     "ETQ Developer",
     "ETQ Administrator",
-    "Production Support Engineer",
-    "Quality Management Specialist"
+    "ETQ Support"
 ];
 
 let wordIndex = 0;
