@@ -477,12 +477,17 @@ font-size:24px;
 
 }
 .download-note {
+    display: none;
     margin-top: 20px;
     margin-bottom: 20px;
     font-size: 0.9rem;
     color: #777;
     line-height: 1.6;
     max-width: 500px;
+}
+
+.download-note.show {
+    display: block;
 }
 
 .download-note strong {
