@@ -1,6 +1,6 @@
-/* ==========================================
+/* ===================================================
    TYPING ANIMATION
-========================================== */
+=================================================== */
 
 const words = [
     "ETQ Reliance Consultant",
@@ -17,6 +17,8 @@ let deleting = false;
 const typing = document.getElementById("typing");
 
 function typeEffect() {
+
+    if (!typing) return;
 
     const currentWord = words[wordIndex];
 
@@ -38,13 +40,7 @@ function typeEffect() {
     } else if (deleting && charIndex === 0) {
 
         deleting = false;
-        wordIndex++;
-
-        if (wordIndex === words.length) {
-
-            wordIndex = 0;
-
-        }
+        wordIndex = (wordIndex + 1) % words.length;
 
     }
 
@@ -52,103 +48,118 @@ function typeEffect() {
 
 }
 
-typeEffect();
+if (typing) {
+    typeEffect();
+}
 
-/* ==========================================
+/* ===================================================
    BACK TO TOP BUTTON
-========================================== */
+=================================================== */
 
 const scrollBtn = document.getElementById("scrollTop");
 
-window.addEventListener("scroll", () => {
+if (scrollBtn) {
 
-    if (window.scrollY > 400) {
+    window.addEventListener("scroll", () => {
 
-        scrollBtn.style.display = "block";
+        if (window.scrollY > 400) {
 
-    } else {
+            scrollBtn.style.display = "block";
 
-        scrollBtn.style.display = "none";
+        } else {
 
-    }
+            scrollBtn.style.display = "none";
 
-});
-
-scrollBtn.onclick = () => {
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
+        }
 
     });
 
-};
+    scrollBtn.addEventListener("click", () => {
 
-/* ==========================================
+        window.scrollTo({
+
+            top: 0,
+            behavior: "smooth"
+
+        });
+
+    });
+
+}
+
+/* ===================================================
    NAVBAR BACKGROUND
-========================================== */
+=================================================== */
 
 const header = document.querySelector("header");
 
-window.addEventListener("scroll", () => {
+if (header) {
 
-    if (window.scrollY > 80) {
+    window.addEventListener("scroll", () => {
 
-        header.style.background = "rgba(7,17,31,.95)";
-        header.style.boxShadow = "0 8px 25px rgba(0,0,0,.3)";
+        if (window.scrollY > 80) {
 
-    } else {
+            header.style.background = "rgba(7,17,31,.95)";
+            header.style.boxShadow = "0 8px 25px rgba(0,0,0,.3)";
 
-        header.style.background = "rgba(7,17,31,.75)";
-        header.style.boxShadow = "none";
+        } else {
 
-    }
+            header.style.background = "rgba(7,17,31,.75)";
+            header.style.boxShadow = "none";
 
-});
+        }
 
-/* ==========================================
+    });
+
+}
+
+/* ===================================================
    THEME TOGGLE
-========================================== */
+=================================================== */
 
 const toggle = document.getElementById("themeToggle");
 
-toggle.addEventListener("click", () => {
+if (toggle) {
 
-    document.body.classList.toggle("light-mode");
+    const savedTheme = localStorage.getItem("theme");
 
-    if (document.body.classList.contains("light-mode")) {
+    if (savedTheme === "light") {
 
+        document.body.classList.add("light-mode");
         toggle.innerHTML = "☀️";
-
-        localStorage.setItem("theme", "light");
 
     } else {
 
         toggle.innerHTML = "🌙";
 
-        localStorage.setItem("theme", "dark");
-
     }
 
-});
+    toggle.addEventListener("click", () => {
 
-if (localStorage.getItem("theme") === "light") {
+        document.body.classList.toggle("light-mode");
 
-    document.body.classList.add("light-mode");
+        if (document.body.classList.contains("light-mode")) {
 
-    toggle.innerHTML = "☀️";
+            toggle.innerHTML = "☀️";
+            localStorage.setItem("theme", "light");
+
+        } else {
+
+            toggle.innerHTML = "🌙";
+            localStorage.setItem("theme", "dark");
+
+        }
+
+    });
 
 }
-
-/* ==========================================
+/* ===================================================
    SCROLL REVEAL
-========================================== */
+=================================================== */
 
-const observer = new IntersectionObserver(entries => {
+const observer = new IntersectionObserver((entries) => {
 
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
 
         if (entry.isIntersecting) {
 
@@ -164,7 +175,7 @@ const observer = new IntersectionObserver(entries => {
 
 });
 
-document.querySelectorAll("section").forEach(section => {
+document.querySelectorAll("section").forEach((section) => {
 
     section.classList.add("hidden");
 
@@ -172,9 +183,9 @@ document.querySelectorAll("section").forEach(section => {
 
 });
 
-/* ==========================================
+/* ===================================================
    ACTIVE NAVIGATION
-========================================== */
+=================================================== */
 
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll("nav a");
@@ -183,19 +194,21 @@ window.addEventListener("scroll", () => {
 
     let current = "";
 
-    sections.forEach(section => {
+    sections.forEach((section) => {
 
-        const sectionTop = section.offsetTop - 150;
+        const sectionTop = section.offsetTop - 180;
+        const sectionHeight = section.offsetHeight;
 
-        if (pageYOffset >= sectionTop) {
-
+        if (
+            window.pageYOffset >= sectionTop &&
+            window.pageYOffset < sectionTop + sectionHeight
+        ) {
             current = section.getAttribute("id");
-
         }
 
     });
 
-    navLinks.forEach(link => {
+    navLinks.forEach((link) => {
 
         link.classList.remove("active");
 
@@ -209,11 +222,11 @@ window.addEventListener("scroll", () => {
 
 });
 
-/* ==========================================
-   HERO CARD ANIMATION
-========================================== */
+/* ===================================================
+   HERO STAT CARD HOVER
+=================================================== */
 
-document.querySelectorAll(".stat-card").forEach(card => {
+document.querySelectorAll(".stat-card").forEach((card) => {
 
     card.addEventListener("mouseenter", () => {
 
@@ -226,5 +239,49 @@ document.querySelectorAll(".stat-card").forEach(card => {
         card.style.transform = "translateY(0) scale(1)";
 
     });
+
+});
+
+/* ===================================================
+   SMOOTH SCROLL FOR NAVIGATION
+=================================================== */
+
+navLinks.forEach((link) => {
+
+    link.addEventListener("click", (e) => {
+
+        const targetId = link.getAttribute("href");
+
+        if (targetId.startsWith("#")) {
+
+            e.preventDefault();
+
+            const targetSection = document.querySelector(targetId);
+
+            if (targetSection) {
+
+                window.scrollTo({
+
+                    top: targetSection.offsetTop - 80,
+
+                    behavior: "smooth"
+
+                });
+
+            }
+
+        }
+
+    });
+
+});
+
+/* ===================================================
+   PRELOAD ANIMATION
+=================================================== */
+
+window.addEventListener("load", () => {
+
+    document.body.style.opacity = "1";
 
 });
